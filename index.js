@@ -12,10 +12,17 @@ app.get('/', function(req, res){
   })
 })
 
-app.get('/punch', function(req, res){
+/*
+takes
+subject = this can be anything that classifies what this time blongs to such as
+  youtube, codeing, cleaning, a project, or a client name
+description = which is a description about what was done
+*/
+app.post('/punch', function(req, res){
   res.json({
     success: true,
-    message: 'punched'
+    subject: req.body.subject,
+    description: req.body.description
   })
 })
 
