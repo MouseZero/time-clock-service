@@ -1,0 +1,12 @@
+{
+  "secret": "fj18217eb1cf08662f26lkjlkjlk894f05aeb4",
+  "database": {
+    "user": "dev",
+    "password": "662f264f05aeb",
+    "database": "zero_time_clock",
+    "host": "localhost",
+    "port": "5432",
+    "connectionNumber": 3,
+    "idleTimeoutMillis": 30000
+  }
+}

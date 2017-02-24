@@ -1,4 +1,4 @@
 const pg = require('pg');
-const config = require('../../../../config.js');
+const config = require('../../../../config.json');
 
 console.log(config);
