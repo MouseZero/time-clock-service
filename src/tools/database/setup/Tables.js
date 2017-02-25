@@ -8,17 +8,17 @@ pool.connect( (err, client, done) => {
 
   client.query(
     `
-    CREATE TABLE public.times
+    CREATE TABLE public.projects
     (
-      id SERIAL,
-      note character(150),
-      project_id integer,
-      time_stamp timestamp without time zone DEFAULT now()
+      id SERIAL UNIQUE,
+      name character(100) NOT NULL,
+      note character(500),
+      CONSTRAINT id UNIQUE (id)
     )
     WITH (
       OIDS=FALSE
     );
-    ALTER TABLE public.times
+    ALTER TABLE public.projects
     OWNER TO dev;
     `,
     [],
@@ -26,5 +26,28 @@ pool.connect( (err, client, done) => {
       return console.error(err);
     }
   )
-  done();
+
+  client.query(
+    `
+    CREATE TABLE public.times
+    (
+      id SERIAL UNIQUE,
+      note character(150),
+      project_id integer,
+      time_stamp timestamp without time zone DEFAULT now(),
+      CONSTRAINT times_id_fkey FOREIGN KEY (id)
+          REFERENCES public.projects (id) MATCH SIMPLE
+          ON UPDATE NO ACTION ON DELETE NO ACTION
+    )
+    WITH (
+      OIDS=FALSE
+    );
+    ALTER TABLE public.times
+  OWNER TO dev;
+    `,
+    [],
+    function (err){
+      return console.error(err);
+    }
+  )
 });
