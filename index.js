@@ -21,7 +21,7 @@ description = which is a description about what was done
 app.post('/punch', function(req, res){
   res.json({
     success: true,
-    subject: req.body.subject,
+    project: req.body.project,
     description: req.body.description
   })
 })
