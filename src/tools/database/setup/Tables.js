@@ -32,7 +32,7 @@ pool.connect( (err, client, done) => {
         note character(150),
         project_id integer,
         time_stamp timestamp without time zone DEFAULT now(),
-        CONSTRAINT times_id_fkey FOREIGN KEY (id)
+        CONSTRAINT times_id_fkey FOREIGN KEY (project_id)
             REFERENCES public.projects (id) MATCH SIMPLE
             ON UPDATE NO ACTION ON DELETE NO ACTION
       )
