@@ -1,4 +1,5 @@
 const express = require('express')
+const PORT = process.argv[2] || 3333
 const bodyParser = require('body-parser')
 const app = express()
 const apiRoutes = express.Router()
@@ -17,6 +18,6 @@ app.get('/', function (req, res) {
 routes(apiRoutes)
 app.use('/api', apiRoutes)
 
-app.listen(3333, function () {
-  console.log('started server')
+app.listen(PORT, function () {
+  console.log(`Server is listening on port ${PORT}`)
 })
