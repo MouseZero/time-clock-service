@@ -1,5 +1,7 @@
 const config = require('../config.json');
 
+console.log(config.database.password);
+
 module.exports = {
   user: config.database.user,
   database: config.database.database,

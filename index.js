@@ -1,31 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const apiRoutes = express.Router()
+const routes = require('./src/routes/api')
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
   res.json({
-      hey: 'test',
-      nameis: req.query.name
+    hey: 'test',
+    nameis: req.query.name
   })
 })
 
-/*
-takes
-subject = this can be anything that classifies what this time blongs to such as
-  youtube, codeing, cleaning, a project, or a client name
-description = which is a description about what was done
-*/
-app.post('/punch', function(req, res){
-  res.json({
-    success: true,
-    project: req.body.project,
-    description: req.body.description
-  })
-})
+routes(apiRoutes)
+app.use('/api', apiRoutes)
 
-app.listen(3333, function(){
-  console.log('started server');
+app.listen(3333, function () {
+  console.log('started server')
 })
